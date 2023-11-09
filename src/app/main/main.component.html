@@ -1,0 +1,73 @@
+<div>
+  <div class="mainCotainer">
+    <div class="panelContainer">
+      <div class="text">Каналы в которых есть бот</div>
+      <app-info-panel>
+        <div *ngFor="let data of this.channelData">
+          <div class="tables">
+            <div class="channelName">{{ data[1] }}</div>
+            <div class="delButton" (click)="deleteChannel(data[1], 0)">
+              Удалить
+            </div>
+          </div>
+        </div>
+      </app-info-panel>
+      <input
+        [(ngModel)]="newChannelName"
+        placeholder="Введите имя канала"
+        class="inputChannel"
+        (ngModelChange)="onChannelNameChange()"
+      />
+      <div class="addButton" (click)="addChannel(0)">Добавить</div>
+    </div>
+    <div class="panelContainer">
+      <div class="text">Каналы с фишинг-контентом</div>
+      <app-info-panel>
+        <div *ngFor="let data of this.fishingChannelsData">
+          <div class="tables">
+            <div class="channelName">{{ data[1] }}</div>
+            <div class="delButton" (click)="deleteChannel(data[1], 1)">
+              Удалить
+            </div>
+          </div>
+        </div>
+      </app-info-panel>
+    </div>
+    <div class="panelContainer">
+      <div class="text">Сайты на которые идет трафик</div>
+      <app-info-panel>
+        <div *ngFor="let data of this.fishingSitesData">
+          <div class="tables">
+            <div class="channelName">{{ data[1] }}</div>
+            <div class="delButton" (click)="deleteChannel(data[1], 2)">
+              Удалить
+            </div>
+          </div>
+        </div>
+      </app-info-panel>
+    </div>
+  </div>
+  <div class="mainCotainer secondContainer">
+    <div class="panelContainer">
+      <div class="text">Ключевые слова для поиска</div>
+      <app-info-panel>
+        <div *ngFor="let data of this.keyWordsData">
+          <div class="tables">
+            <div class="channelName">{{ data[1] }}</div>
+            <div class="delButton" (click)="deleteChannel(data[1], 3)">
+              Удалить
+            </div>
+          </div>
+        </div>
+      </app-info-panel>
+      <input
+        [(ngModel)]="newKeyWord"
+        placeholder="Введите слово"
+        class="inputChannel"
+        (ngModelChange)="onChannelNameChange()"
+      />
+      <div class="addButton" (click)="addChannel(1)">Добавить</div>
+    </div>
+    <div class="addButton" (click)="sendRequest()">Начать поиск</div>
+  </div>
+</div>

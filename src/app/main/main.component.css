@@ -1,0 +1,75 @@
+.mainCotainer {
+  width: 100%;
+  height: 550px;
+
+  display: flex;
+
+  gap: 20px;
+}
+.panelContainer {
+  width: 33%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.panelContainer > :nth-child(2) {
+  height: 100%; /* Заставить дочерние элементы занимать всю доступную высоту */
+  width: 100%;
+}
+.text {
+  font-size: 130%;
+}
+.tables {
+  width: 100%;
+  border-bottom: 2px solid #000;
+  font-size: 130%;
+  display: flex;
+  align-items: center;
+}
+.channelName {
+  margin-left: 5%;
+}
+.delButton {
+  width: 17%;
+  height: 100%;
+  background-color: #ff0000;
+  border-radius: 10%;
+  margin-left: auto;
+  margin-right: 2%;
+  text-align: center;
+  color: #ffffff;
+  font-size: 90%;
+}
+.delButton:hover {
+  cursor: pointer; /* Или другой тип курсора, который вы хотите использовать */
+}
+.inputChannel {
+  height: 5%;
+  width: 35%;
+  margin-top: 3%;
+  border: 2px solid #000;
+  border-radius: 8%;
+}
+.addButton {
+  display: flex;
+  margin-top: 3%;
+  max-height: 7%;
+  width: 30%;
+  height: 100%;
+  background-color: #ff0000;
+  border-radius: 10%;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 140%;
+}
+.addButton:hover {
+  cursor: pointer; /* Или другой тип курсора, который вы хотите использовать */
+}
+.secondContainer {
+  margin-top: 5%;
+  justify-content: center;
+}
