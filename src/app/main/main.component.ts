@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InfoPanelComponent } from '../info-panel/info-panel.component';
 import { ServerConnect } from './ServerConnect';
 import { HttpClient } from '@angular/common/http';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,8 @@ export class MainComponent {
   serverConnect!: ServerConnect;
   newChannelName: string = ''; // Добавьте переменную для хранения имени нового канала
   newKeyWord: string = '';
+  private dataSubscription!: Subscription;
+
   ngOnInit(): void {
     // Вызываем функцию с интервалом в 12 часов (43,200,000 миллисекунд)
     setInterval(() => {
@@ -42,7 +44,9 @@ export class MainComponent {
       if (flag == 0) {
         await this.serverConnect
           .delete('ChannelData', name)
-          .subscribe((response) => {});
+          .subscribe((response) => {
+            this.ngOnDestroy();
+          });
         await this.Refresh();
       } else if (flag == 1) {
         await this.serverConnect
@@ -107,11 +111,19 @@ export class MainComponent {
     }
   }
   public async Refresh() {
-    this.serverConnect.getAll().subscribe((response: any) => {
-      this.channelData = response.ChannelData;
-      this.fishingChannelsData = response.FinshingChannelsData;
-      this.fishingSitesData = response.FinshingSitesData;
-      this.keyWordsData = response.KeyWordsData;
-    });
+    this.dataSubscription = this.serverConnect
+      .getAll()
+      .subscribe((response: any) => {
+        this.channelData = response.ChannelData;
+        this.fishingChannelsData = response.FinshingChannelsData;
+        this.fishingSitesData = response.FinshingSitesData;
+        this.keyWordsData = response.KeyWordsData;
+        this.ngOnDestroy();
+      });
+  }
+  ngOnDestroy(): void {
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
+    }
   }
 }
