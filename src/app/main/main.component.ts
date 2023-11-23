@@ -19,12 +19,6 @@ export class MainComponent {
   newKeyWord: string = '';
   private dataSubscription!: Subscription;
 
-  ngOnInit(): void {
-    // Вызываем функцию с интервалом в 12 часов (43,200,000 миллисекунд)
-    setInterval(() => {
-      this.sendRequest(); // Замените на вашу функцию
-    }, 43200000); // 12 часов
-  }
   constructor(private http: HttpClient) {
     this.serverConnect = new ServerConnect(http);
     this.Refresh();
