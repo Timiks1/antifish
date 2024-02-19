@@ -7,23 +7,23 @@ export class ServerConnect {
   search() {
     // Преобразуйте ваш объект данных в параметры запроса
 
-    return this.http.get('http://localhost:4202/api/search');
+    return this.http.get('http://localhost:8083/api/search');
   }
   insertData(table_name: string, channel_name: string) {
     let params = new HttpParams()
       .set('table_name', table_name) // Преобразует массив в строку, разделенную запятыми
       .set('channel_names', channel_name);
 
-    return this.http.get('http://localhost:4202/api/insert', { params });
+    return this.http.get('http://localhost:8083/api/insert', { params });
   }
   getAll() {
-    return this.http.get('http://localhost:4202/api/getAll');
+    return this.http.get('http://localhost:8083/api/getAll');
   }
   delete(table_name: string, channel_name: string) {
     let params = new HttpParams()
       .set('table_name', table_name) // Преобразует массив в строку, разделенную запятыми
       .set('channel_names', channel_name);
 
-    return this.http.get('http://localhost:4202/api/delete', { params });
+    return this.http.get('http://localhost:8083/api/delete', { params });
   }
 }
