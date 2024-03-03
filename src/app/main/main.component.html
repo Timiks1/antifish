@@ -68,6 +68,21 @@
       />
       <div class="addButton" (click)="addChannel(1)">Добавить</div>
     </div>
+    <div class="panelContainer">
+      <div class="text">Добавить список каналов массово</div>
+
+      <textarea
+        class="massAdd"
+        rows="30"
+        cols="50"
+        [(ngModel)]="massChannelAdd"
+        placeholder="Введите название"
+      >
+      </textarea>
+      <div class="addButton" (click)="massAddChannel()">Добавить</div>
+    </div>
+  </div>
+  <div class="bottomButton">
     <div class="addButton" (click)="sendRequest()">Начать поиск</div>
   </div>
 </div>

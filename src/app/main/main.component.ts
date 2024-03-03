@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoPanelComponent } from '../info-panel/info-panel.component';
 import { ServerConnect } from './ServerConnect';
 import { HttpClient } from '@angular/common/http';
 import { from, Subscription } from 'rxjs';
@@ -18,7 +17,7 @@ export class MainComponent {
   newChannelName: string = ''; // Добавьте переменную для хранения имени нового канала
   newKeyWord: string = '';
   private dataSubscription!: Subscription;
-
+  massChannelAdd!: string;
   constructor(private http: HttpClient) {
     this.serverConnect = new ServerConnect(http);
     this.Refresh();
@@ -60,6 +59,18 @@ export class MainComponent {
       }
     } catch (error) {
       console.error('Ошибка при удалении канала', error);
+    }
+  }
+  public async massAddChannel() {
+    try {
+      let arr = this.massChannelAdd.split('\n');
+      const response: any = await from(
+        this.serverConnect.insertAllData('ChannelData', arr)
+      ).toPromise();
+      this.massChannelAdd = '';
+      await this.Refresh();
+    } catch (error) {
+      console.error('Ошибка при добавлении канала', error);
     }
   }
   public async addChannel(flag: number) {
